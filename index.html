@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#102b46">
+  <title>CCIAI | Credenciamento Premium</title>
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <style>
+    :root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#17283b;background:#f3f6fa;--navy:#102b46;--navy2:#173e62;--gold:#c7a85a;--line:#e1e7ef;--muted:#65758a;--green:#16794b;--red:#b42335;--shadow:0 16px 42px rgba(16,43,70,.08)}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh}button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:11px;padding:12px 16px;font-weight:700;transition:transform .12s,opacity .12s}button:active{transform:scale(.99)}button:disabled{opacity:.55;cursor:not-allowed}.primary{background:var(--navy);color:#fff}.gold{background:var(--gold);color:#18283b}.secondary{background:#edf2f7;color:#263b51}.danger{background:#fff0f1;color:var(--red);border:1px solid #ffd3d8}.full{width:100%}.muted{color:var(--muted)}.small{font-size:12px;line-height:1.55}.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:10px;font-weight:800;color:var(--gold)}
+    .topbar{background:linear-gradient(115deg,var(--navy),#1b4267);color:#fff;border-bottom:4px solid var(--gold);padding:18px 22px}.topinner{max-width:1120px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:12px}.brandmark{height:44px;width:44px;border:1px solid rgba(255,255,255,.28);border-radius:13px;display:grid;place-items:center;font-weight:900;color:var(--gold);font-size:15px}.brand h1{font-size:17px;margin:3px 0}.brand p{font-size:12px;margin:0;color:#d4dfeb}.topuser{font-size:12px;color:#e1e9f1;text-align:right}
+    .page{max-width:1120px;margin:28px auto;padding:0 18px 48px}.hidden{display:none!important}.login-shell{min-height:calc(100vh - 90px);display:grid;place-items:center;padding:30px 16px}.login-layout{width:min(920px,100%);display:grid;grid-template-columns:1fr 420px;background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}.login-intro{background:linear-gradient(150deg,#102b46,#1e4b70);color:white;padding:42px 38px;display:flex;flex-direction:column;justify-content:space-between;min-height:490px}.login-intro h2{font-size:32px;line-height:1.14;margin:15px 0}.login-intro p{color:#d6e1ec;line-height:1.7;font-size:14px}.intro-foot{font-size:11px;color:#c1d0de}.login-card{padding:42px 34px;display:flex;flex-direction:column;justify-content:center}.login-card h2{font-size:24px;margin:0 0 8px}.login-card .muted{font-size:13px;line-height:1.5;margin:0 0 20px}.field{margin:14px 0}.field label{display:block;font-size:12px;font-weight:800;margin:0 0 7px;color:#30455c}.field input,.field select{width:100%;padding:13px 14px;border:1px solid #cbd5e1;border-radius:11px;background:#fff;color:#17283b;outline:none}.field input:focus,.field select:focus{border-color:#537da5;box-shadow:0 0 0 3px #e6eef7}.message{padding:12px 14px;border-radius:10px;font-size:13px;line-height:1.45;margin:12px 0}.message.error{background:#fff0f1;color:#9e2635;border:1px solid #ffd1d7}.message.info{background:#eef5fc;color:#254f77;border:1px solid #d6e7f7}.message.success{background:#eaf8f0;color:#176b43;border:1px solid #c5ebd4}
+    .section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:22px}.section-head h2{margin:4px 0 7px;font-size:26px}.section-head p{margin:0;color:var(--muted);font-size:13px}.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px}.sidebar{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;height:max-content;box-shadow:0 4px 18px rgba(16,43,70,.03)}.navbtn{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:transparent;color:#465b71;padding:12px;margin:2px 0}.navbtn.active{background:#edf3f9;color:var(--navy)}.navbtn .ico{width:23px;text-align:center;font-size:16px}.content{min-width:0}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 4px 18px rgba(16,43,70,.035)}.card h3{font-size:16px;margin:0 0 7px}.card p{margin:0}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:17px}.stat span{display:block;color:var(--muted);font-size:11px;font-weight:700}.stat strong{display:block;font-size:28px;margin-top:8px;color:var(--navy)}.stat small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.scanner-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(270px,.9fr);gap:16px}.camera-frame{background:#0b1724;border-radius:14px;min-height:280px;overflow:hidden;display:grid;place-items:center;padding:8px}.camera-placeholder{color:#d7e1eb;text-align:center;padding:24px}.camera-placeholder strong{display:block;margin:10px 0}.camera-placeholder p{font-size:12px;color:#b7c6d5;line-height:1.5}.camera-frame video{object-fit:cover}.result{display:none;padding:17px;border-radius:13px;margin-top:14px;border:1px solid var(--line)}.result.show{display:block}.result h3{font-size:21px;margin:0 0 10px}.result p{font-size:13px;margin:5px 0;line-height:1.45}.result.success{background:#eaf8f0;border-color:#9bd7b3;color:#155c3b}.result.failure{background:#fff0f1;border-color:#f2b5be;color:#9e2635}.result.warning{background:#fff8e6;border-color:#f0d48a;color:#805c0a}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.actions button{flex:1}.divider{height:1px;background:var(--line);margin:17px 0}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:11px 10px;text-align:left;border-bottom:1px solid #edf0f4;white-space:nowrap}th{color:#617187;font-size:10px;text-transform:uppercase;letter-spacing:.06em}.status{display:inline-block;padding:5px 8px;border-radius:999px;background:#edf2f7;font-size:10px;font-weight:800}.status.on{background:#e7f7ee;color:#176b43}.status.off{background:#fff0f1;color:#a12c3a}.inline-form{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.inline-form .wide{grid-column:1/-1}.footer-note{text-align:center;color:#8794a4;font-size:11px;margin-top:24px}
+    @media(max-width:800px){.login-layout{grid-template-columns:1fr;max-width:480px}.login-intro{min-height:auto;padding:28px}.login-intro h2{font-size:25px}.intro-foot{margin-top:25px}.login-card{padding:28px}.layout{grid-template-columns:1fr}.sidebar{display:flex;gap:5px;overflow:auto}.navbtn{white-space:nowrap;width:auto;flex:0 0 auto}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.scanner-grid{grid-template-columns:1fr}.section-head h2{font-size:22px}}
+    @media(max-width:420px){.topbar{padding:15px}.topuser{display:none}.page{padding:0 12px 32px;margin-top:18px}.card{padding:15px}.login-card{padding:23px}.stats{gap:8px}.stat{padding:13px}.stat strong{font-size:24px}.inline-form{grid-template-columns:1fr}.inline-form .wide{grid-column:auto}}
+  </style>
+</head>
+<body>
+<header class="topbar"><div class="topinner"><div class="brand"><div class="brandmark">CCIAI</div><div><div class="eyebrow">Credenciamento oficial</div><h1>Controlo de Acesso QR</h1><p>8.º Aniversário da CCIAI 2026</p></div></div><div id="topUser" class="topuser hidden"></div></div></header>
+
+<!-- ECRÃ 1: LOGIN. O scanner não é apresentado antes da autenticação. -->
+<section id="loginScreen" class="login-shell">
+  <div class="login-layout">
+    <div class="login-intro"><div><div class="eyebrow">Acesso reservado</div><h2>Entrada segura.<br>Evento organizado.</h2><p>Plataforma interna de credenciamento e controlo de entradas da CCIAI. Aceda com as credenciais atribuídas pela administração.</p></div><div class="intro-foot">CCIAI · Sistema de Credenciamento Premium</div></div>
+    <div class="login-card"><div class="eyebrow">Autenticação</div><h2>Iniciar sessão</h2><p class="muted">Introduza o seu nome de utilizador e a palavra-passe para continuar.</p>
+      <form id="loginForm" onsubmit="event.preventDefault(); entrar();">
+        <div class="field"><label for="username">Nome de utilizador</label><input id="username" name="username" autocomplete="username" placeholder="Ex.: operador.porta1" required maxlength="32"></div>
+        <div class="field"><label for="password">Palavra-passe</label><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Introduza a palavra-passe" required maxlength="128"></div>
+        <div id="loginMessage" class="message error hidden" role="alert"></div>
+        <button id="loginBtn" class="primary full" type="submit">Entrar <span aria-hidden="true">→</span></button>
+      </form><p class="small muted" style="margin-top:18px">Problemas de acesso? Contacte o administrador do sistema. Não partilhe as suas credenciais.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ECRÃ 2: APLICAÇÃO, só visível após login válido. -->
+<main id="appScreen" class="page hidden">
+  <div class="section-head"><div><div id="roleEyebrow" class="eyebrow">Área de trabalho</div><h2 id="welcomeTitle">Bem-vindo</h2><p id="welcomeSub">Seleccione uma tarefa no menu.</p></div><button class="secondary" onclick="sair()">Terminar sessão</button></div>
+  <div class="layout">
+    <nav class="sidebar" aria-label="Menu principal">
+      <button id="navScan" class="navbtn active" onclick="mostrarVista('scanner')"><span class="ico">▦</span> Scanner QR</button>
+      <button id="navAdmin" class="navbtn hidden" onclick="mostrarVista('admin')"><span class="ico">▤</span> Administração</button>
+      <button id="navUsers" class="navbtn hidden" onclick="mostrarVista('users')"><span class="ico">♙</span> Utilizadores</button>
+    </nav>
+    <div class="content">
+      <!-- SCANNER / ÁREA DE SERVIÇO -->
+      <section id="scannerView">
+        <div class="card"><div class="eyebrow">Área de serviço</div><h3>Validar convite</h3><p class="muted small">Aponte a câmara para o QR Code. A entrada só é autorizada após validação no servidor.</p>
+          <div class="scanner-grid" style="margin-top:16px">
+            <div><div id="cameraFrame" class="camera-frame"><div id="cameraPlaceholder" class="camera-placeholder"><div style="font-size:38px">▦</div><strong>Câmara pronta a iniciar</strong><p>Carregue em «Iniciar scanner» e permita o acesso à câmara do dispositivo.</p></div><div id="qr-reader" class="hidden" style="width:100%"></div></div>
+              <div class="actions"><button id="startCameraBtn" class="primary" onclick="iniciarScanner()">Iniciar scanner</button><button id="nextScanBtn" class="gold hidden" onclick="proximaLeitura()">Ler próximo convite</button><button id="stopCameraBtn" class="secondary" onclick="pararScanner()" disabled>Parar scanner</button></div>
+              <div id="cameraMessage" class="message info hidden"></div>
+            </div>
+            <div><h3>Validação manual</h3><p class="muted small">Se a câmara não estiver disponível, introduza o conteúdo do QR Code. A validação continua a ser feita pelo servidor.</p>
+              <div class="field"><label for="manualToken">Token do convite</label><input id="manualToken" autocomplete="off" placeholder="Cole ou escreva o token"></div>
+              <button id="manualBtn" class="primary full" onclick="validarManual()">Validar código</button>
+              <div id="resultBox" class="result" role="status" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+        <p class="small muted">A câmara requer HTTPS, permissões do navegador e acesso à Internet para carregar a biblioteca de leitura. Se falhar, use a validação manual e reporte a mensagem apresentada.</p>
+      </section>
+      <!-- ADMIN DASHBOARD -->
+      <section id="adminView" class="hidden">
+        <div class="stats"><div class="stat"><span>Total de convidados</span><strong id="statTotal">—</strong><small>Limite: 350</small></div><div class="stat"><span>Autorizados</span><strong id="statAuth">—</strong><small>Convites activos</small></div><div class="stat"><span>Entradas registadas</span><strong id="statEntries">—</strong><small>Primeiras leituras válidas</small></div><div class="stat"><span>Por utilizar</span><strong id="statUnused">—</strong><small>Ainda sem entrada</small></div></div>
+        <div class="card"><div class="section-head" style="margin-bottom:12px"><div><h3>Actividade recente</h3><p>Últimas tentativas de validação registadas.</p></div><button class="secondary" onclick="carregarAdmin()">Actualizar</button></div><div class="table-wrap"><table><thead><tr><th>Data/hora</th><th>Convite</th><th>Resultado</th><th>Operador</th></tr></thead><tbody id="logsBody"><tr><td colspan="4" class="muted">A carregar…</td></tr></tbody></table></div></div>
+      </section>
+      <!-- ADMIN USER MANAGEMENT -->
+      <section id="usersView" class="hidden">
+        <div class="card"><div class="eyebrow">Gestão de acessos</div><h3>Criar utilizador</h3><p class="muted small">Crie uma conta individual para cada funcionário. Use o perfil Operador para a equipa de porta e Administrador para responsáveis autorizados.</p>
+          <form id="userForm" onsubmit="event.preventDefault(); criarUtilizadorUI();" class="inline-form">
+            <div class="field"><label for="newUsername">Nome de utilizador</label><input id="newUsername" required minlength="3" maxlength="32" pattern="[A-Za-z0-9._-]+" placeholder="operador.porta1"></div>
+            <div class="field"><label for="newName">Nome completo</label><input id="newName" required maxlength="100" placeholder="Nome do funcionário"></div>
+            <div class="field"><label for="newPassword">Palavra-passe temporária</label><input id="newPassword" type="password" required minlength="12" maxlength="128" autocomplete="new-password" placeholder="Mínimo de 12 caracteres"></div>
+            <div class="field"><label for="newRole">Perfil</label><select id="newRole"><option value="OPERADOR">Operador</option><option value="ADMIN">Administrador</option></select></div>
+            <div class="wide"><button class="primary" type="submit" id="createUserBtn">Criar utilizador</button></div>
+          </form><div id="userMessage" class="message hidden"></div>
+        </div>
+        <div class="card"><h3>Utilizadores registados</h3><div class="table-wrap"><table><thead><tr><th>Utilizador</th><th>Nome</th><th>Perfil</th><th>Estado</th><th>Acção</th></tr></thead><tbody id="usersBody"><tr><td colspan="5" class="muted">A carregar…</td></tr></tbody></table></div></div>
+      </section>
+    </div>
+  </div>
+  <div class="footer-note">CCIAI · Acesso restrito · Registos sujeitos a auditoria</div>
+</main>
+<script>
+  let sessionToken = '';
+  let currentUser = null;
+  let qrScanner = null;
+  let cameraActive = false;
+  let requestBusy = false;
+  let lastScanned = '';
+  let lastScanAt = 0;
+
+  // A interface é servida pelo GitHub Pages; as chamadas seguem pela ponte Apps Script.
+  const APPS_SCRIPT_BRIDGE_URL = 'COLE_AQUI_O_URL_DA_APLICACAO_WEB_DO_APPS_SCRIPT?bridge=1';
+  let bridgeFrame = null;
+  let bridgeReady = false;
+  let bridgeQueue = [];
+  const rpcPending = new Map();
+  let rpcCounter = 0;
+  function iniciarPonte() {
+    if (bridgeFrame) return;
+    if (!APPS_SCRIPT_BRIDGE_URL.startsWith('https://script.google.com/macros/s/')) {
+      console.warn('Configure APPS_SCRIPT_BRIDGE_URL no index.html.'); return;
+    }
+    bridgeFrame = document.createElement('iframe');
+    bridgeFrame.title = 'Ligação ao servidor CCIAI';
+    bridgeFrame.setAttribute('aria-hidden','true');
+    bridgeFrame.style.cssText = 'position:absolute;width:1px;height:1px;left:-10000px;border:0;';
+    bridgeFrame.src = APPS_SCRIPT_BRIDGE_URL;
+    document.body.appendChild(bridgeFrame);
+  }
+  window.addEventListener('message', function(event) {
+    if (event.origin !== 'https://script.google.com' && event.origin !== 'https://script.googleusercontent.com') return;
+    const data = event.data || {};
+    if (data.type === 'CCIAI_BRIDGE_READY') { bridgeReady = true; bridgeQueue.splice(0).forEach(sendRpc); return; }
+    if (data.type !== 'CCIAI_RPC_RESULT' || !rpcPending.has(data.id)) return;
+    const p = rpcPending.get(data.id); rpcPending.delete(data.id);
+    if (data.ok) p.resolve(data.result); else p.reject(new Error(data.error || 'Erro de comunicação com o servidor.'));
+  });
+  function sendRpc(item) {
+    if (!bridgeFrame || !bridgeFrame.contentWindow) { item.reject(new Error('Ponte do servidor indisponível.')); return; }
+    rpcPending.set(item.id, item);
+    bridgeFrame.contentWindow.postMessage({type:'CCIAI_RPC', id:item.id, method:item.method, args:item.args}, 'https://script.googleusercontent.com');
+  }
+  function rpc(name, ...args) {
+    iniciarPonte();
+    return new Promise((resolve, reject) => {
+      const item = {id:'cciai-' + (++rpcCounter) + '-' + Date.now(), method:name, args:args, resolve:resolve, reject:reject};
+      if (bridgeReady) sendRpc(item); else {
+        bridgeQueue.push(item);
+        setTimeout(() => { const idx=bridgeQueue.indexOf(item); if(idx>=0){bridgeQueue.splice(idx,1);reject(new Error('Não foi possível ligar ao Apps Script. Confirme o URL da aplicação Web e volte a publicar a versão actualizada.'));}}, 15000);
+      }
+    });
+  }
+  function showMessage(id, text, type='error') { const el=document.getElementById(id); el.textContent=text; el.className='message '+type; }
+  function hideMessage(id) { const el=document.getElementById(id); el.classList.add('hidden'); el.textContent=''; }
+  function setBusy(id, busy, label) { const b=document.getElementById(id); if(!b)return; b.disabled=busy; if(busy){b.dataset.oldLabel=b.textContent;b.textContent=label||'A processar…';}else if(b.dataset.oldLabel){b.textContent=b.dataset.oldLabel;delete b.dataset.oldLabel;} }
+
+  async function entrar() {
+    hideMessage('loginMessage');
+    const username=document.getElementById('username').value.trim();
+    const password=document.getElementById('password').value;
+    if(!username || !password){showMessage('loginMessage','Introduza o nome de utilizador e a palavra-passe.');return;}
+    setBusy('loginBtn',true,'A autenticar…');
+    try {
+      const res=await rpc('autenticarUtilizador',username,password);
+      if(!res || !res.ok){showMessage('loginMessage',(res&&res.mensagem)||'Não foi possível iniciar sessão.');return;}
+      sessionToken=res.token;currentUser=res.utilizador;sessionStorage.setItem('cciaiSessionToken',sessionToken);
+      document.getElementById('password').value='';
+      await abrirAplicacao();
+    } catch(e) { showMessage('loginMessage',e.message||'Erro ao iniciar sessão.'); }
+    finally { setBusy('loginBtn',false); }
+  }
+
+  async function abrirAplicacao() {
+    document.getElementById('loginScreen').classList.add('hidden');
+    document.getElementById('appScreen').classList.remove('hidden');
+    document.getElementById('topUser').classList.remove('hidden');
+    document.getElementById('topUser').textContent=currentUser.nome+' · '+(currentUser.perfil==='ADMIN'?'Administrador':'Operador');
+    document.getElementById('welcomeTitle').textContent='Olá, '+currentUser.nome;
+    document.getElementById('welcomeSub').textContent=currentUser.perfil==='ADMIN'?'Acesso de administração e credenciamento.':'Área de serviço de credenciamento.';
+    document.getElementById('roleEyebrow').textContent=currentUser.perfil==='ADMIN'?'Perfil administrador':'Perfil operador';
+    const isAdmin=currentUser.perfil==='ADMIN';
+    document.getElementById('navAdmin').classList.toggle('hidden',!isAdmin);
+    document.getElementById('navUsers').classList.toggle('hidden',!isAdmin);
+    mostrarVista('scanner');
+    if(isAdmin) await carregarAdmin();
+  }
+
+  function mostrarVista(view) {
+    if(view==='admin' && (!currentUser || currentUser.perfil!=='ADMIN')) return;
+    if(view==='users' && (!currentUser || currentUser.perfil!=='ADMIN')) return;
+    pararScanner();
+    ['scanner','admin','users'].forEach(v=>document.getElementById(v+'View').classList.toggle('hidden',v!==view));
+    ['Scan','Admin','Users'].forEach((v,i)=>{const map=['scanner','admin','users'];const b=document.getElementById('nav'+v);b.classList.toggle('active',map[i]===view);});
+    if(view==='admin') carregarAdmin();
+    if(view==='users') carregarAdmin();
+  }
+
+  async function sair() {
+    await pararScanner();
+    try { if(sessionToken) await rpc('terminarSessao',sessionToken); } catch(e) {}
+    sessionStorage.removeItem('cciaiSessionToken'); sessionToken='';currentUser=null;
+    document.getElementById('appScreen').classList.add('hidden');document.getElementById('loginScreen').classList.remove('hidden');document.getElementById('topUser').classList.add('hidden');
+    document.getElementById('username').value='';document.getElementById('password').value='';document.getElementById('username').focus();
+  }
+
+  function extractToken(raw) {
+    const value=String(raw||'').trim();
+    try { const u=new URL(value); const q=u.searchParams.get('token')||u.searchParams.get('text'); if(q)return q; } catch(e) {}
+    return value;
+  }
+  async function validarToken(raw) {
+    if(requestBusy)return;
+    // Pausa a leitura após cada QR para impedir que a mesma etiqueta gere
+    // automaticamente uma segunda tentativa enquanto o operador ainda avalia o resultado.
+    if(cameraActive && qrScanner){try{qrScanner.pause(true);}catch(e){}document.getElementById('nextScanBtn').classList.remove('hidden');}
+    const token=extractToken(raw);
+    if(!token){mostrarResultado('failure','Código vazio',{});return;}
+    const now=Date.now(); if(token===lastScanned && now-lastScanAt<2200)return;
+    lastScanned=token;lastScanAt=now;requestBusy=true;
+    document.getElementById('manualBtn').disabled=true;
+    try {
+      const res=await rpc('validarEntradaComSessao',token,sessionToken);
+      if(res && res.codigo==='SESSAO_EXPIRADA'){await sair();showMessage('loginMessage','A sessão expirou. Entre novamente.');return;}
+      if(res && res.ok) mostrarResultado('success',res.mensagem||'ENTRADA AUTORIZADA',res);
+      else mostrarResultado(res&&res.codigo==='DUPLICADO'?'warning':'failure',(res&&res.mensagem)||'Não foi possível validar o convite.',res||{});
+    } catch(e) { mostrarResultado('failure','Erro de comunicação',{detalhe:e.message||'Não foi possível contactar o servidor. Não autorize a entrada.'}); }
+    finally { requestBusy=false;document.getElementById('manualBtn').disabled=false; }
+  }
+  function validarManual(){validarToken(document.getElementById('manualToken').value);}
+  function mostrarResultado(type,title,data){
+    const box=document.getElementById('resultBox');box.className='result show '+type;
+    const esc=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    let html='<h3>'+esc(title)+'</h3>';
+    if(data&&data.nome)html+='<p><strong>Convidado:</strong> '+esc(data.nome)+'</p>';
+    if(data&&data.id)html+='<p><strong>Identificador:</strong> '+esc(data.id)+'</p>';
+    if(data&&data.categoria)html+='<p><strong>Categoria:</strong> '+esc(data.categoria)+'</p>';
+    if(data&&data.dataHora)html+='<p><strong>Data/hora:</strong> '+esc(data.dataHora)+'</p>';
+    if(data&&data.detalhe)html+='<p>'+esc(data.detalhe)+'</p>';
+    box.innerHTML=html;
+    if(navigator.vibrate)navigator.vibrate(type==='success'?[100]:[180,70,180]);
+  }
+
+  async function carregarBibliotecaQR(){
+    if(typeof Html5Qrcode!=='undefined')return true;
+    return new Promise(resolve=>{const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js';s.onload=()=>resolve(typeof Html5Qrcode!=='undefined');s.onerror=()=>resolve(false);document.head.appendChild(s);});
+  }
+  async function iniciarScanner(){
+    hideMessage('cameraMessage');
+    const lib=await carregarBibliotecaQR();
+    if(!lib){showMessage('cameraMessage','Não foi possível carregar a biblioteca de leitura QR. Verifique a Internet e recarregue a aplicação. Use a validação manual enquanto isso.','error');return;}
+    try {
+      document.getElementById('cameraPlaceholder').classList.add('hidden');
+      document.getElementById('qr-reader').classList.remove('hidden');
+      if(!qrScanner)qrScanner=new Html5Qrcode('qr-reader',{verbose:false});
+      document.getElementById('startCameraBtn').disabled=true;
+      const config={fps:10,qrbox:(w,h)=>{const size=Math.floor(Math.min(w,h)*0.72);return{width:size,height:size};},aspectRatio:1.0,disableFlip:false};
+      let cameras=await Html5Qrcode.getCameras();
+      if(cameras&&cameras.length){const back=cameras.find(c=>/back|rear|environment|traseira|ambiente/i.test(c.label));await qrScanner.start((back||cameras[0]).id,config,text=>validarToken(text),()=>{});}
+      else {await qrScanner.start({facingMode:'environment'},config,text=>validarToken(text),()=>{});}
+      cameraActive=true;document.getElementById('stopCameraBtn').disabled=false;
+      showMessage('cameraMessage','Câmara activa. Aponte para o código QR do convite.','success');
+    } catch(e) {
+      document.getElementById('qr-reader').classList.add('hidden');document.getElementById('cameraPlaceholder').classList.remove('hidden');
+      const msg=(e&&e.message)||String(e)||'Erro desconhecido';
+      showMessage('cameraMessage','Não foi possível iniciar a câmara: '+msg+'. Confirme que abriu o URL da aplicação Web em HTTPS, permita a câmara nas definições do navegador e feche outras aplicações que estejam a usar a câmara.','error');
+    } finally {document.getElementById('startCameraBtn').disabled=false;}
+  }
+  async function proximaLeitura(){
+    document.getElementById('nextScanBtn').classList.add('hidden');
+    document.getElementById('resultBox').className='result';
+    lastScanned='';lastScanAt=0;
+    if(qrScanner && cameraActive){try{qrScanner.resume();showMessage('cameraMessage','Pronto para ler o próximo convite.','info');}catch(e){showMessage('cameraMessage','Não foi possível retomar a câmara. Pare e inicie o scanner novamente.','error');}}
+  }
+  async function pararScanner(){
+    if(qrScanner&&cameraActive){try{await qrScanner.stop();}catch(e){}try{qrScanner.clear();}catch(e){}}
+    cameraActive=false;document.getElementById('stopCameraBtn').disabled=true;document.getElementById('nextScanBtn').classList.add('hidden');document.getElementById('qr-reader').classList.add('hidden');document.getElementById('cameraPlaceholder').classList.remove('hidden');
+    if(document.getElementById('startCameraBtn'))document.getElementById('startCameraBtn').disabled=false;
+  }
+
+  async function carregarAdmin(){
+    if(!currentUser||currentUser.perfil!=='ADMIN')return;
+    try{
+      const d=await rpc('obterPainelAdmin',sessionToken);if(!d||!d.ok)throw new Error('Não foi possível carregar o painel.');
+      document.getElementById('statTotal').textContent=d.resumo.total;document.getElementById('statAuth').textContent=d.resumo.autorizados;document.getElementById('statEntries').textContent=d.resumo.entradas;document.getElementById('statUnused').textContent=d.resumo.porUtilizar;
+      const lb=document.getElementById('logsBody');lb.innerHTML='';
+      if(!d.logs.length)lb.innerHTML='<tr><td colspan="4" class="muted">Ainda não existem tentativas registadas.</td></tr>';
+      d.logs.forEach(l=>{const tr=document.createElement('tr');[l.dataHora,l.id,l.resultado,l.operador].forEach(v=>{const td=document.createElement('td');td.textContent=v||'—';tr.appendChild(td);});lb.appendChild(tr);});
+      const ub=document.getElementById('usersBody');ub.innerHTML='';
+      if(!d.utilizadores.length)ub.innerHTML='<tr><td colspan="5" class="muted">Ainda não existem utilizadores.</td></tr>';
+      d.utilizadores.forEach(u=>{const tr=document.createElement('tr');[u.username,u.nome,u.perfil].forEach(v=>{const td=document.createElement('td');td.textContent=v;tr.appendChild(td);});const state=document.createElement('td');state.innerHTML='<span class="status '+(u.activo?'on':'off')+'">'+(u.activo?'ACTIVO':'INACTIVO')+'</span>';tr.appendChild(state);const action=document.createElement('td');const btn=document.createElement('button');btn.className=u.activo?'danger':'secondary';btn.textContent=u.activo?'Desactivar':'Activar';btn.disabled=u.username===currentUser.username;btn.onclick=()=>mudarEstadoUtilizador(u.username,!u.activo);action.appendChild(btn);tr.appendChild(action);ub.appendChild(tr);});
+    }catch(e){if((e.message||'').includes('Sessão'))sair();else console.error(e);}
+  }
+  async function criarUtilizadorUI(){
+    const msg=document.getElementById('userMessage');msg.classList.add('hidden');setBusy('createUserBtn',true,'A criar…');
+    try{const r=await rpc('criarUtilizador',sessionToken,document.getElementById('newUsername').value,document.getElementById('newName').value,document.getElementById('newPassword').value,document.getElementById('newRole').value);msg.textContent=r.mensagem||'Utilizador criado.';msg.className='message success';document.getElementById('userForm').reset();await carregarAdmin();}
+    catch(e){msg.textContent=e.message||'Não foi possível criar o utilizador.';msg.className='message error';}
+    finally{setBusy('createUserBtn',false);}
+  }
+  async function mudarEstadoUtilizador(username,activo){
+    if(!confirm((activo?'Activar':'Desactivar')+' a conta '+username+'?'))return;
+    try{await rpc('alterarEstadoUtilizador',sessionToken,username,activo);await carregarAdmin();}
+    catch(e){alert(e.message||'Não foi possível alterar o estado da conta.');}
+  }
+
+  // Não restaura automaticamente uma sessão antiga: o servidor confirma-a antes de abrir a área interna.
+  window.addEventListener('load',async()=>{
+    const old=sessionStorage.getItem('cciaiSessionToken');
+    if(!old)return;
+    try{const r=await rpc('validarSessao',old);if(r&&r.ok){sessionToken=old;currentUser=r.utilizador;await abrirAplicacao();}else sessionStorage.removeItem('cciaiSessionToken');}catch(e){sessionStorage.removeItem('cciaiSessionToken');}
+  });
+</script>
+</body>
+</html>
